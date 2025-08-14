@@ -5,8 +5,8 @@ from tensorflow.keras.models import load_model
 
 # ===== Load saved models & scaler =====
 xg_model = joblib.load("ModelsAndScaler/XGBoost.pkl")
-nn_model = load_model("neural_network_model.h5")
-scaler = joblib.load("minmax_scaler.pkl")
+nn_model = load_model("ModelsAndScaler/neural_network_model.h5")
+scaler = joblib.load("ModelsAndScaler/minmax_scaler.pkl")
 
 # ===== Your feature names (must match training order) =====
 feature_names = [
@@ -44,3 +44,4 @@ if st.button("Predict"):
     pred_label = rating_labels[int(prediction[0])] if int(prediction[0]) < len(rating_labels) else "Unknown"
 
     st.success(f"Predicted Rating: {pred_label}")
+

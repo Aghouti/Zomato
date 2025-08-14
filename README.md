@@ -34,6 +34,8 @@ Converted categorical features to usable formats
 Created multiple visualizations to uncover insights.
 
 ![EDA Chart](TopCuisine.png)
+
+
 🤖 Modeling
 
 Preprocessed data using One-Hot Encoding for categorical features and scaling for numerical ones.

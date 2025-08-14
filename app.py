@@ -32,9 +32,9 @@ for feature in feature_names:
 # ===== Predict Button =====
 if st.button("Predict"):
     if model_choice == "XGBoost":
-        prediction = xg_model.predict(features)
+        prediction = xg_model.predict(feature)
     else:
-        prediction = nn_model.predict(features)
+        prediction = nn_model.predict(feature)
         prediction = np.argmax(prediction, axis=1)  # for classification
     
     # Map numeric predictions to labels
@@ -42,3 +42,4 @@ if st.button("Predict"):
     pred_label = rating_labels[int(prediction[0])] if int(prediction[0]) < len(rating_labels) else "Unknown"
 
     st.success(f"Predicted Rating: {pred_label}")
+

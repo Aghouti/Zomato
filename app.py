@@ -4,7 +4,7 @@ import joblib
 from tensorflow.keras.models import load_model
 
 # ===== Load saved models & scaler =====
-rf_model = joblib.load("Random Forest.pkl")
+xg_model = joblib.load("ModelsAndScaler/XGBoost.pkl")
 nn_model = load_model("neural_network_model.h5")
 scaler = joblib.load("minmax_scaler.pkl")
 
@@ -18,7 +18,7 @@ feature_names = [
 
 # ===== Title & Sidebar =====
 st.title("Restaurant Rating Predictor 🍽️")
-model_choice = st.sidebar.selectbox("Select Model", ["Random Forest", "Neural Network"])
+model_choice = st.sidebar.selectbox("Select Model", ["XGBoost", "Neural Network"])
 
 # ===== Input Fields =====
 st.header("Enter Feature Values")
@@ -33,8 +33,8 @@ features_scaled = scaler.transform(features)
 
 # ===== Predict Button =====
 if st.button("Predict"):
-    if model_choice == "Random Forest":
-        prediction = rf_model.predict(features_scaled)
+    if model_choice == "XGBoost":
+        prediction = xg_model.predict(features_scaled)
     else:
         prediction = nn_model.predict(features_scaled)
         prediction = np.argmax(prediction, axis=1)  # for classification

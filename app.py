@@ -6,7 +6,7 @@ from tensorflow.keras.models import load_model
 # ===== Load saved models & scaler =====
 xg_model = joblib.load("ModelsAndScaler/XGBoost.pkl")
 nn_model = load_model("ModelsAndScaler/neural_network_model.h5")
-scaler = joblib.load("ModelsAndScaler/minmax_scaler.pkl")
+#scaler = joblib.load("ModelsAndScaler/minmax_scaler.pkl")
 
 # ===== Your feature names (must match training order) =====
 feature_names = [
@@ -27,16 +27,14 @@ for feature in feature_names:
     value = st.number_input(f"{feature}", value=0.0)
     input_data.append(value)
 
-# Convert to array & scale
-features = np.array([input_data])
-features_scaled = scaler.transform(features)
+
 
 # ===== Predict Button =====
 if st.button("Predict"):
     if model_choice == "XGBoost":
-        prediction = xg_model.predict(features_scaled)
+        prediction = xg_model.predict(features)
     else:
-        prediction = nn_model.predict(features_scaled)
+        prediction = nn_model.predict(features)
         prediction = np.argmax(prediction, axis=1)  # for classification
     
     # Map numeric predictions to labels
@@ -44,4 +42,3 @@ if st.button("Predict"):
     pred_label = rating_labels[int(prediction[0])] if int(prediction[0]) < len(rating_labels) else "Unknown"
 
     st.success(f"Predicted Rating: {pred_label}")
-

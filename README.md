@@ -33,7 +33,7 @@ Converted categorical features to usable formats
 
 Created multiple visualizations to uncover insights.
 
-![EDA Chart](TopCuisine.png)
+
 
 
 🤖 Modeling
